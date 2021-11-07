@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace GraphTheory1.Extras
+namespace GraphTheory.Core.Extras
 {
     public static class Exercises
     {

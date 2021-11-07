@@ -5,4 +5,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GraphTheory.Console\GraphTheory.Interface.csproj" />
+    <ProjectReference Include="..\GraphTheory.Core\GraphTheory.Core.csproj" />
+    <ProjectReference Include="..\GraphTheory.Exercises\GraphTheory.Exercises.csproj" />
+  </ItemGroup>
+
 </Project>

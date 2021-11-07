@@ -1,9 +1,9 @@
-﻿using GraphTheory1.Extras;
+﻿using GraphTheory.Core.Extras;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GraphTheory1.Models
+namespace GraphTheory.Core.Models
 {
     public class Graph
     {

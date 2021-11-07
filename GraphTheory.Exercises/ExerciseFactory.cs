@@ -1,8 +1,9 @@
-﻿using System;
+﻿using GraphTheory.Exercises.Interfaces;
+using System;
 
-namespace GraphTheory1.Exercises
+namespace GraphTheory.Exercises
 {
-    public class ExerciseFactory
+    public sealed class ExerciseFactory : IExerciseFactory
     {
         public IExercise Construct(byte exercise)
         {

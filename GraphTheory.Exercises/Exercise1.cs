@@ -1,9 +1,10 @@
-﻿using GraphTheory1.Models;
+﻿using GraphTheory.Core.Models;
+using GraphTheory.Exercises.Interfaces;
 using System;
 
-namespace GraphTheory1.Exercises
+namespace GraphTheory.Exercises
 {
-    public class Exercise1 : IExercise
+    public sealed class Exercise1 : IExercise
     {
         public void Execute()
         {

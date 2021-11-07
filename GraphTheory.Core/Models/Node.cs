@@ -1,4 +1,4 @@
-﻿namespace GraphTheory1.Models
+﻿namespace GraphTheory.Core.Models
 {
     public class Node
     {

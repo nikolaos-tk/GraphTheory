@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace GraphTheory1.Models
+namespace GraphTheory.Core.Models
 {
     public class DegreeSequence
     {
