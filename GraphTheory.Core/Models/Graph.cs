@@ -7,11 +7,17 @@ namespace GraphTheory.Core.Models
 {
     public class Graph
     {
+        public Graph()
+        {
+            Nodes = new List<Node>();
+            Edges = new List<Edge>();
+        }
+
         public Graph(int order)
         {
             Order = order;
-            Nodes = new List<Node>(8);
-            Edges = new List<Edge>();
+            Nodes = new List<Node>(order);
+            Edges = new List<Edge>(order*(order - 1) / 2);
         }
 
         public int Order { get; set; }
@@ -24,21 +30,73 @@ namespace GraphTheory.Core.Models
 
         public DegreeSequence DegreeSequence { get; set; }
 
-        public void GenerateDegreeSequence()
+        public void AddNode()
         {
-            DegreeSequence = new DegreeSequence(Order);
+            var identifier = Nodes.Count();
+
+            Nodes.Add(new Node
+            {
+                Id = Alphabet.GetCapitalLetter(identifier)
+            });
+        }
+
+        public void AddEdge(Node source, Node destination, int weight)
+        {
+            Edges.Add(new Edge
+            {
+                Source = source,
+                Destination = destination,
+                Weight = weight
+            });
+
+            source.AddNeighbor(destination);
+            destination.AddNeighbor(source);
+        }
+
+        public IEnumerable<Node> FindCenter()
+        {
+            return Nodes.Where(n => n.Eccentricity == Nodes.Min(n => n.Eccentricity));
+        }
+
+        public IEnumerable<Node> FindMedian()
+        {
+            return Nodes.Where(n => n.Distances.Select(d => d.Value).Sum() == Nodes.Min(n => n.Distances.Select(d => d.Value).Sum()));
+        }
+
+        public void GenerateRandomDegreeSequence()
+        {
+            DegreeSequence = new DegreeSequence(Order);            
+        }
+
+        public void CreateNodesBasedOnTheDegreeSequence()
+        {
+            if (DegreeSequence == null)
+            {
+                Console.WriteLine("There is no Degree Sequence defined for the Graph.");
+                return;
+            }
+
+            if (Nodes.Any())
+                Nodes.Clear();
+
             for (int i = 0; i < Order; i++)
             {
                 Nodes.Add(new Node
                 {
-                    Name = Alphabet.GetLetter(i),
-                    Degree = DegreeSequence.GeneratedSequence[i]
+                    Id = Alphabet.GetLetter(i),
+                    Degree = DegreeSequence.Sequence[i]
                 });
             }
         }
 
-        public void CreateSimpleGraph()
+        public void CreateSimpleConnectedGraph()
         {
+            if (Nodes.Count() < 2)
+            {
+                Console.WriteLine("There have to be at least 2 Nodes defined for a simple connected Graph to be created.");
+                return;
+            }
+
             var nodes = Nodes.OrderByDescending(n => n.Degree).ToList();
 
             while (nodes.Any())
@@ -46,12 +104,19 @@ namespace GraphTheory.Core.Models
                 var initialNode = nodes.First();
                 nodes = nodes.Skip(1).ToList();
 
+                if (initialNode.Degree > nodes.Count())
+                {
+                    Console.WriteLine("The creation of the Graph failed.");
+                    Edges.Clear();
+                    return;
+                }
+
                 for (int i = 0; i < initialNode.Degree; i++)
                 {
                     Edges.Add(new Edge
                     {
-                        NodeFrom = initialNode,
-                        NodeTo = nodes[i]
+                        Source = initialNode,
+                        Destination = nodes[i]
                     });
 
                     nodes[i].Degree--;
@@ -63,15 +128,19 @@ namespace GraphTheory.Core.Models
             }
         }
 
+        public void PrintNodes()
+        {
+            Console.WriteLine(string.Join(',', Nodes.Select(n => n.Id)));
+        }
+
         public void PrintEdges()
         {
             Console.Write("The edges of the simple graph are the following: {");
 
             foreach (var edge in Edges)
-                Console.Write("{" + $"{edge.NodeFrom.Name},{edge.NodeTo.Name}" + "}");
+                Console.Write("{" + $"{edge.Source.Id},{edge.Destination.Id}" + "}");
 
             Console.WriteLine("}");
         }
-
     }
 }

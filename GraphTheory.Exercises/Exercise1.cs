@@ -21,12 +21,15 @@ namespace GraphTheory.Exercises
 
             var graph = new Graph(graphOrder);
             if (graph.DegreeSequence == null)
-                graph.GenerateDegreeSequence();
+            {
+                graph.GenerateRandomDegreeSequence();
+                graph.CreateNodesBasedOnTheDegreeSequence();
+            }
 
             if (graph.DegreeSequence.IsGraphical)
             {
                 Console.WriteLine("The graph sequence is graphical.");
-                graph.CreateSimpleGraph();
+                graph.CreateSimpleConnectedGraph();
                 graph.PrintEdges();
             }
             else

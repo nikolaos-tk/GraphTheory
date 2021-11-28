@@ -1,5 +1,7 @@
-﻿using GraphTheory.Core.Models;
+﻿using GraphTheory.Core.Extras;
+using GraphTheory.Core.Models;
 using GraphTheory.Exercises.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,44 +14,41 @@ namespace GraphTheory.Exercises
             var graph = CreateGraph();
 
             graph.PrintEdges();
+
+            foreach (var node in graph.Nodes)
+                node.CalculateDistances();
+
+            var center = graph.FindCenter();
+            Console.WriteLine($"The center of the graph is the sub-graph of the {string.Join(",", center.Select(c => c.Id))} nodes.");
+
+            var median = graph.FindMedian();
+            Console.WriteLine($"The median of the graph is the sub-graph of the {string.Join(",", median.Select(c => c.Id))} nodes.");
         }
 
         private Graph CreateGraph()
         {
-            var graph = new Graph(8);
-            graph.Nodes = CreateNodes();
-            graph.Edges = CreateEdges(graph.Nodes);
+            var graph = new Graph();
+            SetNodes(graph);
+            SetEdges(graph);
 
             return graph;
         }
 
-        private List<Edge> CreateEdges(List<Node> nodes)
-        {
-            return new List<Edge>
-            {
-                new Edge { NodeFrom = nodes.Single(n => n.Name == 'A'), NodeTo = nodes.Single(n => n.Name == 'D') },
-                new Edge { NodeFrom = nodes.Single(n => n.Name == 'D'), NodeTo = nodes.Single(n => n.Name == 'C') },
-                new Edge { NodeFrom = nodes.Single(n => n.Name == 'D'), NodeTo = nodes.Single(n => n.Name == 'E') },
-                new Edge { NodeFrom = nodes.Single(n => n.Name == 'D'), NodeTo = nodes.Single(n => n.Name == 'F') },
-                new Edge { NodeFrom = nodes.Single(n => n.Name == 'D'), NodeTo = nodes.Single(n => n.Name == 'G') },
-                new Edge { NodeFrom = nodes.Single(n => n.Name == 'G'), NodeTo = nodes.Single(n => n.Name == 'H') },
-                new Edge { NodeFrom = nodes.Single(n => n.Name == 'H'), NodeTo = nodes.Single(n => n.Name == 'B') }
-            };
+        private void SetNodes(Graph graph)
+        {   
+            for (int i = 0; i < 8; i++)
+                graph.AddNode();
         }
 
-        private List<Node> CreateNodes()
+        private void SetEdges(Graph graph)
         {
-            return new List<Node>
-            {
-                new Node { Name = 'A', Degree = 1 },
-                new Node { Name = 'B', Degree = 1 },
-                new Node { Name = 'C', Degree = 1 },
-                new Node { Name = 'D', Degree = 5 },
-                new Node { Name = 'E', Degree = 1 },
-                new Node { Name = 'F', Degree = 1 },
-                new Node { Name = 'G', Degree = 2 },
-                new Node { Name = 'H', Degree = 2 }
-            };
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'A'), graph.Nodes.Single(n => n.Id == 'D'), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'D'), graph.Nodes.Single(n => n.Id == 'C'), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'D'), graph.Nodes.Single(n => n.Id == 'E'), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'D'), graph.Nodes.Single(n => n.Id == 'F'), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'D'), graph.Nodes.Single(n => n.Id == 'G'), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'G'), graph.Nodes.Single(n => n.Id == 'H'), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'H'), graph.Nodes.Single(n => n.Id == 'B'), 1);
         }
     }
 }

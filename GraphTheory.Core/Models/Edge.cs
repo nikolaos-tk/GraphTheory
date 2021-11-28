@@ -2,9 +2,11 @@
 {
     public class Edge
     {
-        public Node NodeFrom { get; set; }
+        public Node Source { get; set; }
 
-        public Node NodeTo { get; set; }
+        public Node Destination { get; set; }
+
+        public int Weight { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -12,10 +14,10 @@
             if (edge == null)
                 return false;
 
-            if (this.NodeFrom == edge.NodeFrom && this.NodeTo == edge.NodeTo)
+            if (this.Source == edge.Source && this.Destination == edge.Destination)
                 return true;
 
-            if (this.NodeFrom == edge.NodeTo && this.NodeTo == edge.NodeFrom)
+            if (this.Source == edge.Destination && this.Destination == edge.Source)
                 return true;
 
             return false;

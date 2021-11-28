@@ -6,17 +6,25 @@ namespace GraphTheory.Core.Models
     public class DegreeSequence
     {
         private int[] _degreeSequence { get; set; }
+        private bool _isGraphical { get; set; }
+
+        public DegreeSequence(int[] sequence)
+        {
+            _degreeSequence = sequence;
+            _isGraphical = CheckIsGraphical(_degreeSequence, 0);
+        }
 
         public DegreeSequence(int graphOrder)
         {
-            Generate(graphOrder);
+            GenerateRandomSequence(graphOrder);
+            _isGraphical = CheckIsGraphical(_degreeSequence, 0);
         }
 
-        public int[] GeneratedSequence => _degreeSequence;
+        public int[] Sequence => _degreeSequence;
 
-        public bool IsGraphical => CheckIsGraphical(_degreeSequence, 0);
+        public bool IsGraphical => _isGraphical;
 
-        private void Generate(int graphOrder)
+        private void GenerateRandomSequence(int graphOrder)
         {
             var degreeSequence = new int[graphOrder];
             int maxPossibleEdges = graphOrder - 1;
@@ -39,7 +47,6 @@ namespace GraphTheory.Core.Models
         {
             Console.WriteLine($"D{step}: {string.Join(',', degreeSequence)}");
 
-            //This algorithm is based on the slides. Nothing to explain I think.
             if (degreeSequence.All(gs => gs > degreeSequence.Length - 1))
                 return false;
 
