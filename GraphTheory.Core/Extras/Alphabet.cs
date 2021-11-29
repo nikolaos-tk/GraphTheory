@@ -7,14 +7,14 @@ namespace GraphTheory.Core.Extras
         private static char[] _alphabetLowerCase = Enumerable.Range('a', 26).Select(x => (char)x).ToArray();
         private static char[] _alphabetUpperCase = Enumerable.Range('A', 26).Select(x => (char)x).ToArray();
 
-        public static char GetLetter(int index)
+        public static string GetLetter(int index)
         {
-            return _alphabetLowerCase[index];
+            return _alphabetLowerCase[index].ToString();
         }
 
-        public static char GetCapitalLetter(int index)
+        public static string GetCapitalLetter(int index)
         {
-            return _alphabetUpperCase[index];
+            return _alphabetUpperCase[index].ToString();
         }
     }
 }

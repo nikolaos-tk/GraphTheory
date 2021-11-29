@@ -17,9 +17,6 @@
             if (this.Source == edge.Source && this.Destination == edge.Destination)
                 return true;
 
-            if (this.Source == edge.Destination && this.Destination == edge.Source)
-                return true;
-
             return false;
         }
 

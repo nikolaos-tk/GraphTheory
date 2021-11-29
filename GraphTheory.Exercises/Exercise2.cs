@@ -1,8 +1,6 @@
-﻿using GraphTheory.Core.Extras;
-using GraphTheory.Core.Models;
+﻿using GraphTheory.Core.Models;
 using GraphTheory.Exercises.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace GraphTheory.Exercises
@@ -42,13 +40,13 @@ namespace GraphTheory.Exercises
 
         private void SetEdges(Graph graph)
         {
-            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'A'), graph.Nodes.Single(n => n.Id == 'D'), 1);
-            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'D'), graph.Nodes.Single(n => n.Id == 'C'), 1);
-            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'D'), graph.Nodes.Single(n => n.Id == 'E'), 1);
-            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'D'), graph.Nodes.Single(n => n.Id == 'F'), 1);
-            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'D'), graph.Nodes.Single(n => n.Id == 'G'), 1);
-            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'G'), graph.Nodes.Single(n => n.Id == 'H'), 1);
-            graph.AddEdge(graph.Nodes.Single(n => n.Id == 'H'), graph.Nodes.Single(n => n.Id == 'B'), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == "A"), graph.Nodes.Single(n => n.Id == "D"), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == "D"), graph.Nodes.Single(n => n.Id == "C"), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == "D"), graph.Nodes.Single(n => n.Id == "E"), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == "D"), graph.Nodes.Single(n => n.Id == "F"), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == "D"), graph.Nodes.Single(n => n.Id == "G"), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == "G"), graph.Nodes.Single(n => n.Id == "H"), 1);
+            graph.AddEdge(graph.Nodes.Single(n => n.Id == "H"), graph.Nodes.Single(n => n.Id == "B"), 1);
         }
     }
 }

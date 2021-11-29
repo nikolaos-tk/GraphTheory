@@ -40,17 +40,31 @@ namespace GraphTheory.Core.Models
             });
         }
 
+        public void AddNode(string identifier)
+        {
+            Nodes.Add(new Node
+            {
+                Id = identifier
+            });
+        }
+
         public void AddEdge(Node source, Node destination, int weight)
         {
-            Edges.Add(new Edge
+            var edge = new Edge
             {
                 Source = source,
                 Destination = destination,
                 Weight = weight
-            });
+            };
 
-            source.AddNeighbor(destination);
-            destination.AddNeighbor(source);
+            if (!Edges.Any(e => e.Equals(edge)))
+            {
+
+                Edges.Add(edge);
+
+                source.AddNeighbor(destination);
+                destination.AddNeighbor(source);
+            }
         }
 
         public IEnumerable<Node> FindCenter()
@@ -141,6 +155,12 @@ namespace GraphTheory.Core.Models
                 Console.Write("{" + $"{edge.Source.Id},{edge.Destination.Id}" + "}");
 
             Console.WriteLine("}");
+        }
+
+        public void PrintDetailedEdges()
+        {
+            foreach (var edge in Edges)
+                Console.WriteLine($"\t {edge.Source.Id} \t {edge.Destination.Id} \t Cost: {edge.Weight}");
         }
     }
 }

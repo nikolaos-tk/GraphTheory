@@ -11,7 +11,7 @@ namespace GraphTheory.Core.Models
             Distances = new List<Distance>();
         }
 
-        public char Id { get; set; }
+        public string Id { get; set; }
 
         public List<Node> Neighbors { get; set; }
 
@@ -23,7 +23,8 @@ namespace GraphTheory.Core.Models
 
         public void AddNeighbor(Node node)
         {
-            Neighbors.Add(node);
+            if (!Neighbors.Contains(node))
+                Neighbors.Add(node);
         }
 
         public void CalculateDistances()

@@ -5,7 +5,7 @@ namespace GraphTheory.Core.Extras
 {
     public static class Exercises
     {
-        private static byte[] _exercises = { 1, 2 };
+        private static byte[] _exercises = { 1, 2, 3 };
 
         public static bool IsAvailable(byte exerciseNumber)
         {
