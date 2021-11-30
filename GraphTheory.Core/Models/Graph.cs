@@ -160,7 +160,7 @@ namespace GraphTheory.Core.Models
         public void PrintDetailedEdges()
         {
             foreach (var edge in Edges)
-                Console.WriteLine($"\t {edge.Source.Id} \t {edge.Destination.Id} \t Cost: {edge.Weight}");
+                Console.WriteLine($"\t{edge.Source.Id}  \t  {edge.Destination.Id}   \t Cost: {edge.Weight}");
         }
     }
 }

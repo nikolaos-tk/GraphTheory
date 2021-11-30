@@ -18,6 +18,9 @@ namespace GraphTheory.Exercises
                 case 3:
                     return new Exercise3();
 
+                case 4:
+                    return new Exercise4();
+
                 default:
                     throw new Exception();
             }

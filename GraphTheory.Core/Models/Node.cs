@@ -24,7 +24,10 @@ namespace GraphTheory.Core.Models
         public void AddNeighbor(Node node)
         {
             if (!Neighbors.Contains(node))
+            {
                 Neighbors.Add(node);
+                Degree++;
+            }
         }
 
         public void CalculateDistances()

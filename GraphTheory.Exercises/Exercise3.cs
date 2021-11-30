@@ -154,7 +154,7 @@ namespace GraphTheory.Exercises
             totalCost += graph.Edges.Single(e => e.Source == path.Last() && e.Destination == path.First()).Weight;
             path.Add(path.ElementAt(0));
 
-            Console.WriteLine($"\t {string.Join(" -> ", path.Select(p => p.Id))} - Cost: {totalCost}");
+            Console.WriteLine($"A hamiltonian cycle for the graph is: {string.Join(" -> ", path.Select(p => p.Id))} - Cost: {totalCost}");
         }
     }
 }

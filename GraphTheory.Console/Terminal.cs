@@ -30,12 +30,12 @@ namespace GraphTheory.Interface
 
         private string ReadInputCommand()
         {
-            Console.Write("Please select what exercise you want to execute (1-3) or exit: ");
+            Console.Write("Please select what exercise you want to execute (1-4) or exit: ");
 
             string cmd = Console.ReadLine();
             while (!InputCommandIsValid(cmd))
             {
-                Console.Write("Please select what exercise you want to execute (1-3) or exit: ");
+                Console.Write("Please select what exercise you want to execute (1-4) or exit: ");
                 cmd = Console.ReadLine();
             }
 
